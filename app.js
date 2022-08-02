@@ -13,15 +13,15 @@ class UI {
     element.className = "card text-center mb-3";
     element.innerHTML = `
 			<div class="card-body">
-				<ul class="list-group">
+				<ul class="list-group mb-3">
 					<li class="list-group-item">
 						${product.name}
 					</li>
 					<li class="list-group-item">
 						$ ${product.price}
 					</li>
-					<li class="list-group-item mb-3">
-						<strong>Product year</strong>: ${product.year}
+					<li class="list-group-item">
+						${product.year}
 					</li>
 				</ul>
 				<a href="/" class="btn btn-warning" name="remove">
@@ -38,10 +38,25 @@ class UI {
   }
 
   removeProduct(element) {
-    element.name === "remove" && element.parentElement.parentElement.remove();
+    if (element.name === "remove") {
+      element.parentElement.parentElement.remove();
+      this.showMessage("Product Removed Successfully", "warning");
+    }
   }
 
-  showMessage(msg, cssClass) {}
+  showMessage(msg, cssClass) {
+    const div = document.createElement("div");
+    div.className = `alert alert-${cssClass} mt-2 mb-0`;
+    div.appendChild(document.createTextNode(msg));
+
+    const containerApp = document.querySelector("main");
+    const app = document.getElementById("App");
+    containerApp.insertBefore(div, app);
+
+    setTimeout(() => {
+      document.querySelector(".alert").remove();
+    }, 3000);
+  }
 }
 
 document.getElementById("product-form").addEventListener("submit", (event) => {
@@ -50,11 +65,16 @@ document.getElementById("product-form").addEventListener("submit", (event) => {
   const year = document.getElementById("year").value;
 
   const product = new Product(name, price, year);
-
   const ui = new UI();
-  ui.addProduct(product);
 
   event.preventDefault();
+
+  if (name && price && year) {
+    ui.addProduct(product);
+    ui.showMessage("Product Added Successfully", "success");
+  } else {
+    return ui.showMessage("Upss!! Complete Fields", "info");
+  }
 });
 
 document.getElementById("product-list").addEventListener("click", (event) => {
