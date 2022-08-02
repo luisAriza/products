@@ -1,0 +1,26 @@
+{
+  "name": "products_app",
+  "version": "1.0.0",
+  "description": "App de productos con POO",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel -p 2664",
+    "build": "rm -rf dist && parcel build --no-source-maps --public-url .",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisAriza/products_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luisAriza/products_app/issues"
+  },
+  "homepage": "https://github.com/luisAriza/products_app#readme",
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "parcel": "^2.6.2"
+  }
+}

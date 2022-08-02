@@ -1,12 +1,4 @@
-class Product {
-  constructor(name, price, year) {
-    this.name = name;
-    this.price = price;
-    this.year = year;
-  }
-}
-
-class UI {
+export default class UI {
   addProduct(product) {
     const productList = document.getElementById("product-list");
     const element = document.createElement("div");
@@ -14,7 +6,7 @@ class UI {
     element.innerHTML = `
 			<div class="card-body">
 				<ul class="list-group mb-3">
-					<li class="list-group-item">
+					<li class="list-group-item text-capitalize">
 						${product.name}
 					</li>
 					<li class="list-group-item">
@@ -58,28 +50,3 @@ class UI {
     }, 3000);
   }
 }
-
-document.getElementById("product-form").addEventListener("submit", (event) => {
-  const name = document.getElementById("name").value;
-  const price = document.getElementById("price").value;
-  const year = document.getElementById("year").value;
-
-  const product = new Product(name, price, year);
-  const ui = new UI();
-
-  event.preventDefault();
-
-  if (name && price && year) {
-    ui.addProduct(product);
-    ui.showMessage("Product Added Successfully", "success");
-  } else {
-    return ui.showMessage("Upss!! Complete Fields", "info");
-  }
-});
-
-document.getElementById("product-list").addEventListener("click", (event) => {
-  const ui = new UI();
-  ui.removeProduct(event.target);
-
-  event.preventDefault();
-});
