@@ -1,5 +1,5 @@
-import Product from "./product.js";
-import UI from "./ui.js";
+import Product from "./Product.js";
+import UI from "./UI.js";
 
 document.getElementById("product-form").addEventListener("submit", (event) => {
   const name = document.getElementById("name").value;

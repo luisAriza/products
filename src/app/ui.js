@@ -16,7 +16,7 @@ export default class UI {
 						${product.year}
 					</li>
 				</ul>
-				<a href="/" class="btn btn-warning" name="remove">
+				<a href="/" class="btn btn-danger" name="remove">
 					Remove
 				</a>
 			</div>
@@ -32,7 +32,7 @@ export default class UI {
   removeProduct(element) {
     if (element.name === "remove") {
       element.parentElement.parentElement.remove();
-      this.showMessage("Product Removed Successfully", "warning");
+      this.showMessage("Product Removed Successfully", "danger");
     }
   }
 
